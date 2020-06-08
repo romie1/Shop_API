@@ -22,9 +22,9 @@ public class ProductDAOImplementation implements ProductDAO
 	}
 
 	@Override
-	public Product getProduct(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Product getProduct(Long id)
+	{
+		return sessionFactory.getCurrentSession().get(Product.class, id);
 	}
 
 	@Override

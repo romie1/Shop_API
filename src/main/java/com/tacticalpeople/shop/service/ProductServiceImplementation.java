@@ -23,9 +23,9 @@ public class ProductServiceImplementation implements ProductService
 	}
 
 	@Override
-	public Product getProduct(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Product getProduct(Long id) 
+	{
+		return productDAO.getProduct(id);
 	}
 
 	@Override
