@@ -17,12 +17,14 @@ public class ProductServiceImplementation implements ProductService
 	private ProductDAO productDAO;
 
 	@Override
-	public Long save(Product product) {
-		// TODO Auto-generated method stub
-		return null;
+	@Transactional
+	public Long save(Product product) 
+	{
+		return productDAO.save(product);
 	}
 
 	@Override
+	@Transactional
 	public Product getProduct(Long id) 
 	{
 		return productDAO.getProduct(id);
@@ -36,15 +38,17 @@ public class ProductServiceImplementation implements ProductService
 	}
 
 	@Override
-	public void updateProduct(Long id, Product product) {
-		// TODO Auto-generated method stub
-		
+	@Transactional
+	public void updateProduct(Long id, Product product) 
+	{
+		productDAO.updateProduct(id, product);
 	}
 
 	@Override
-	public void delete(Long id) {
-		// TODO Auto-generated method stub
-		
+	@Transactional
+	public void deleteProduct(Long id) 
+	{
+		productDAO.deleteProduct(id);
 	}
 	
 }

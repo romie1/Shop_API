@@ -2,6 +2,7 @@ package com.tacticalpeople.shop.dao;
 
 import java.util.List;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -16,9 +17,10 @@ public class ProductDAOImplementation implements ProductDAO
 	private SessionFactory sessionFactory;
 
 	@Override
-	public Long save(Product product) {
-		// TODO Auto-generated method stub
-		return null;
+	public Long save(Product product)
+	{
+		sessionFactory.getCurrentSession().save(product);
+		return product.getId();
 	}
 
 	@Override
@@ -35,15 +37,23 @@ public class ProductDAOImplementation implements ProductDAO
 	}
 
 	@Override
-	public void updateProduct(Long id, Product product) {
-		// TODO Auto-generated method stub
-		
+	public void updateProduct(Long id, Product product) 
+	{
+		Session session = sessionFactory.getCurrentSession();
+		Product productToUpdate = session.byId(Product.class).load(id);
+		productToUpdate.setName(product.getName());
+		productToUpdate.setCategory(product.getCategory());
+		productToUpdate.setDescription(product.getDescription());
+		productToUpdate.setPrice(product.getPrice());
+		session.flush();
 	}
 
 	@Override
-	public void delete(Long id) {
-		// TODO Auto-generated method stub
-		
+	public void deleteProduct(Long id) 
+	{
+		Session session = sessionFactory.getCurrentSession();
+		Product productToDelete = session.byId(Product.class).load(id);
+		session.delete(productToDelete);
 	}
 	
 	
